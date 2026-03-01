@@ -1,6 +1,3 @@
-# External reference docs (local only)
-external/
-
 # Dependencies
 node_modules/
 
