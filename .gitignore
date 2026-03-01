@@ -1,0 +1,31 @@
+# External reference docs (local only)
+external/
+
+# Dependencies
+node_modules/
+
+# Build and output
+dist/
+build/
+out/
+cache/
+artifacts/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# IDE and editor
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs and coverage
+*.log
+coverage/
+.coverage

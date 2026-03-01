@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "blueprintkit": {
+      "source": "justinedevs/collection",
+      "sourceType": "github",
+      "computedHash": "1a5a134b7a871e75af5da3a5dda0adfc99f2212eec6863a50ab035e7be1fc30e"
+    },
+    "core-engineering": {
+      "source": "justinedevs/collection",
+      "sourceType": "github",
+      "computedHash": "f0f4975092d31e94410a711033ba0d7bbdb56a48eab3440924b0058af6379a32"
+    }
+  }
+}
