@@ -1,6 +1,6 @@
 # Spec Audit Report: LockIn Protocol (spec.md)
 
-**Audit reference**: [external/audit.md](external/audit.md)  
+**Audit reference**: [external/audit-standards.md](external/audit-standards.md) (full checklist: [.cursor/rules/audit.md](.cursor/rules/audit.md))  
 **Artifact audited**: [spec.md](spec.md)  
 **Report date**: 2025-03-01  
 **Status**: Draft
@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-The LockIn Protocol specification (spec.md) was audited against the practices and standards defined in external/audit.md. The spec is a design and product document, not source code; the audit therefore focuses on **documentation quality**, **security coverage**, **compliance and data considerations**, **risk and remediation clarity**, and **alignment with audit documentation standards**.
+The LockIn Protocol specification (spec.md) was audited against the practices and standards defined in external/audit-standards.md. The spec is a design and product document, not source code; the audit therefore focuses on **documentation quality**, **security coverage**, **compliance and data considerations**, **risk and remediation clarity**, and **alignment with audit documentation standards**.
 
 **Overall**: The spec is well-structured and covers scope, architecture, user journey, and feature prioritization. Gaps exist in explicit threat modeling, testability criteria, compliance mapping, and audit/remediation tracking. Recommendations below are prioritized for incorporation into the spec or into downstream implementation and audit plans.
 
@@ -107,7 +107,7 @@ Interpreted for a specification artifact:
 | Area | Status | Notes |
 |------|--------|------|
 | Scope and objectives | Met | Abstract, Specification, MoSCoW define scope and MVP. |
-| Documentation collected | Met | Single coherent spec; external references (audit.md, LICENSE) exist. |
+| Documentation collected | Met | Single coherent spec; external references (audit-standards.md, LICENSE) exist. |
 | Compliance requirements identified | Partial | Mentioned but not listed or mapped. |
 | Security and compliance | Partial | Security section present; compliance and IR gaps as above. |
 | Testing and validation | Partial | E2E and testnet mentioned in implementation; no explicit test strategy or acceptance criteria in spec. |
@@ -157,8 +157,8 @@ Interpreted for a specification artifact:
 
 ## 10. Conclusion
 
-The LockIn Protocol spec is suitable as a design and product baseline and aligns well with the audit document’s emphasis on documentation, security awareness, and compliance. To align fully with the audit practices in external/audit.md, the spec should be extended with explicit threat modeling, regulatory mapping, incident response, data governance, and (where applicable) references to remediation and audit follow-up. Implementing the high- and medium-priority recommendations above will bring the spec in line with the audit standards and support downstream implementation and security audits.
+The LockIn Protocol spec is suitable as a design and product baseline and aligns well with the audit document’s emphasis on documentation, security awareness, and compliance. To align fully with the audit practices in external/audit-standards.md, the spec should be extended with explicit threat modeling, regulatory mapping, incident response, data governance, and (where applicable) references to remediation and audit follow-up. Implementing the high- and medium-priority recommendations above will bring the spec in line with the audit standards and support downstream implementation and security audits.
 
 ---
 
-*This report follows the audit documentation and risk assessment practices described in [external/audit.md](external/audit.md).*
+*This report follows the audit documentation and risk assessment practices described in [external/audit-standards.md](external/audit-standards.md).*

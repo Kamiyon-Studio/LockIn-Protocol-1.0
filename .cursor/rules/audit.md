@@ -89,7 +89,7 @@ alwaysApply: true
 - Use proper compliance monitoring and continuous assessment.
 - Implement proper compliance incident response and escalation procedures.
 - Use proper compliance governance and policy enforcement.
-- Implement proper compliance cost optimization and resource management.
+- Use proper compliance cost optimization and resource management.
 - Use proper compliance disaster recovery and business continuity planning.
 - Implement proper compliance reporting and audit trail management.
 - Use proper compliance risk assessment and mitigation strategies.
@@ -243,11 +243,11 @@ alwaysApply: true
 - Use proper audit documentation and process standardization.
 - Implement proper audit performance monitoring and optimization.
 - Use proper audit compliance and regulatory requirements validation.
-- Implement proper audit cost optimization and resource management.
-- Use proper audit incident response and escalation procedures.
-- Implement proper audit governance and policy enforcement.
+- Use proper audit cost optimization and resource management.
+- Implement proper audit incident response and escalation procedures.
+- Use proper audit governance and policy enforcement.
 - Use proper audit disaster recovery and business continuity planning.
-- Implement proper audit automation and continuous improvement.
+- Use proper audit automation and continuous improvement.
 - Use proper audit stakeholder communication and reporting.
 
 By following these comprehensive audit practices, organizations will achieve high-quality security, compliance, and operational excellence standards through systematic assessment and continuous improvement.
