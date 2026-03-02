@@ -102,6 +102,7 @@ This PRD defines the scope, features, and technical requirements for the custom 
 | Backend | Node.js/Express; Moralis, Supabase, Firebase |
 | Verification | Goal-aware AI (e.g. multimodal LLM); signed attestation to chain |
 | Hosting | Vercel (frontend, optional backend); Supabase (DB); Firebase (notifications) |
+| Avalanche docs (llms.txt) | [Index](https://build.avax.network/llms.txt); [full](https://build.avax.network/llms-full.txt); append `.md` to docs/academy/integrations/blog URLs for per-page markdown. |
 
 ---
 

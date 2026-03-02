@@ -154,3 +154,4 @@ Channels: P1/P2 to Slack/email/PagerDuty; P3 to ticket queue. Runbooks linked in
 
 - LockIn Protocol spec: technical stack (Avalanche, Foundry, Next.js, Node/Express, Moralis, Supabase, Firebase), architecture, and threat model.
 - Internal: CI/CD configs, runbooks, status page, and incident log location.
+- Avalanche (llms.txt): [https://build.avax.network/llms.txt](https://build.avax.network/llms.txt) (index), [https://build.avax.network/llms-full.txt](https://build.avax.network/llms-full.txt) (full). Append `.md` to page URLs for markdown; use for automation or AI-assisted runbooks.

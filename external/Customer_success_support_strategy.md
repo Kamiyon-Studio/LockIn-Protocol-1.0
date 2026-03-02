@@ -35,6 +35,7 @@ Training for support agents: product walkthrough, contract basics (stake lock, s
 
 - **In-app**: Tooltips at commitment creation, check-in upload, and partner invite. Link to help center from dashboard and settings.
 - **Docs**: One page per major flow. Include Fuji testnet for testing without mainnet funds. List supported wallets and chains (Avalanche C-Chain only for MVP).
+- **Avalanche / chain docs**: [llms.txt](https://build.avax.network/llms.txt) (index), [llms-full.txt](https://build.avax.network/llms-full.txt) (full); append `.md` to page URLs for per-page markdown. Use for help-center articles and AI-assisted support.
 - **Status / transparency**: Public status page for app and API. If indexing or verification is delayed, say so and give a rough ETA.
 
 ---

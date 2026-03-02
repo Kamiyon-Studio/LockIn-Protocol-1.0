@@ -67,6 +67,7 @@ All stake-related flows are on Avalanche C-Chain (or specified EVM-compatible ch
 - **Frontend**: Next.js 15 (React), wagmi/viem for Web3, Tailwind CSS; hosted on Vercel. Web-only for MVP; mobile (React Native) as Could Have post-MVP.
 - **Backend**: Node.js/Express; Moralis API for Fuji/Mainnet indexing; Supabase for off-chain user profiles and check-in metadata; Firebase for push/email notifications. Photo verification via AWS Rekognition or open-source ML (e.g., CLIP for semantic match). Hosting: AWS Lambda or Vercel. A dedicated backend is required for reliable photo validation and UX (indexing, reminders).
 - **Check-in data**: Full photos and metadata in Supabase or IPFS (pinned via backend); only hash and signed attestation (user + backend signature) stored on-chain. Retention for photos/metadata is defined at app layer; audit-use retention and access (backend/admin, for disputes and security reviews) should be time-limited and access-controlled.
+- **Avalanche docs (llms.txt)**: Static endpoints for AI content discovery and retrieval on Avalanche C-Chain: [llms.txt](https://build.avax.network/llms.txt) (index); [llms-full.txt](https://build.avax.network/llms-full.txt) (full docs, 1300+ pages — use index or individual `.md` URLs if context-limited); append `.md` to any page under `/docs/`, `/academy/`, `/integrations/`, `/blog/` for processed markdown.
 
 **Architecture decisions**
 
