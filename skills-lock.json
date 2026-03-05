@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "avoid-feature-creep": {
+      "source": "waynesutton/convexskills",
+      "sourceType": "github",
+      "computedHash": "ee5a1e957d5e6d0a9af2eaf29ee1071efbeaeb64b56bff7de22fe738d36a7005"
+    },
     "blueprintkit": {
       "source": "justinedevs/collection",
       "sourceType": "github",
@@ -10,6 +15,11 @@
       "source": "justinedevs/collection",
       "sourceType": "github",
       "computedHash": "f0f4975092d31e94410a711033ba0d7bbdb56a48eab3440924b0058af6379a32"
+    },
+    "lean-startup": {
+      "source": "wondelai/skills",
+      "sourceType": "github",
+      "computedHash": "28bc834ad062d8d0194760138d4c1353694e9fc3c0024cc9e65a9229e8d8a669"
     }
   }
 }
