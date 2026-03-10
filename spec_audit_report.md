@@ -3,34 +3,37 @@
 **Audit reference**: [external/audit-standards.md](external/audit-standards.md) (full checklist: [.cursor/rules/audit.md](.cursor/rules/audit.md))  
 **Artifact audited**: [spec.md](spec.md)  
 **Report date**: 2025-03-01  
+**Updated**: 2025-03-02 — Spec converted to open-source, no-crypto (no blockchain, wallet, or staking). This report has been adjusted to reflect app-only scope.  
 **Status**: Draft
 
 ---
 
 ## 1. Executive Summary
 
-The LockIn Protocol specification (spec.md) was audited against the practices and standards defined in external/audit-standards.md. The spec is a design and product document, not source code; the audit therefore focuses on **documentation quality**, **security coverage**, **compliance and data considerations**, **risk and remediation clarity**, and **alignment with audit documentation standards**.
+The LockIn Protocol specification (spec.md) was audited against the practices and standards defined in external/audit-standards.md. The spec is a design and product document for an **open-source, application-only** product with **no cryptocurrency or monetization**. The audit focuses on **documentation quality**, **security coverage** (app and data), **compliance and data considerations**, and **alignment with audit documentation standards**.
 
-**Overall**: The spec is well-structured and covers scope, architecture, user journey, and feature prioritization. Gaps exist in explicit threat modeling, testability criteria, compliance mapping, and audit/remediation tracking. Recommendations below are prioritized for incorporation into the spec or into downstream implementation and audit plans.
+**Overall**: The spec is well-structured and covers scope, architecture, user journey, and feature prioritization. Recommendations below are scoped to application security, data governance, and documentation (no smart contract or mainnet audit).
 
 ---
 
 ## 2. Security Audit (per audit.md Security Practices)
 
+*Scope: Application and data only; no smart contracts or chain.*
+
 | Criterion | Status | Notes |
 |-----------|--------|------|
-| Comprehensive security coverage | Partial | Security Considerations section exists and touches contract, keys, attestation, economic, privacy, regulatory. |
-| Vulnerability assessment | Gap | No explicit vulnerability list or threat model (e.g., STRIDE, attack trees) for escrow, resolver, backend oracle, or photo pipeline. |
-| Secure coding / design validation | Partial | Non-custodial design and signature verification are stated; re-entrancy and access control are mentioned but not specified (e.g., no roles/permissions matrix). |
-| Threat modeling and risk prioritization | Gap | No dedicated threat model or risk ranking for security findings. |
-| Security incident response | Gap | No incident response or escalation for contract bug, oracle compromise, or data breach. |
-| Security documentation | Partial | Security Considerations are high-level; no mapping to standards (e.g., OWASP, NIST) or audit trail for security decisions. |
+| Comprehensive security coverage | Partial | Security Considerations section exists; touches app security, data, privacy. No contract or chain. |
+| Vulnerability assessment | Gap | No explicit vulnerability list or threat model for app, backend, or photo pipeline. |
+| Secure coding / design validation | Partial | Auth and access control mentioned; roles/permissions could be clearer. |
+| Threat modeling and risk prioritization | Gap | No dedicated threat model or risk ranking. |
+| Security incident response | Gap | No incident response or escalation for data breach or app compromise. |
+| Security documentation | Partial | Security Considerations are high-level; no mapping to standards (e.g., OWASP). |
 
 **Findings**
 
-- **SEC-1 (Medium)**: No threat model. **Recommendation**: Add a subsection under Security Considerations (or a separate doc) with threat model: e.g., escrow drain, resolver bypass, backend key compromise, attestation forgery, partner collusion. Prioritize and reference mitigations already in spec.
-- **SEC-2 (Low)**: Incident response not specified. **Recommendation**: Add 2–3 sentences on incident response (e.g., pause mechanism, oracle key rotation, user notification) and escalation; or reference an external IR plan.
-- **SEC-3 (Low)**: Backend private key for attestation is a single point of failure. **Recommendation**: Explicitly call out key management and rotation (and post-MVP multi-sig/oracle) in Security Considerations.
+- **SEC-1 (Medium)**: No threat model. **Recommendation**: Add a short threat model under Security: e.g., auth bypass, data exposure, partner impersonation, verification abuse. Prioritize and reference mitigations.
+- **SEC-2 (Low)**: Incident response not specified. **Recommendation**: Add 2–3 sentences on incident response (e.g., user notification, data breach procedure) and escalation; or reference an external IR plan.
+- **SEC-3 (Low)**: If backend performs verification, key or credential management should be explicit. **Recommendation**: Call out secure storage and rotation for any verification credentials in Security Considerations.
 
 ---
 
@@ -41,13 +44,13 @@ The LockIn Protocol specification (spec.md) was audited against the practices an
 | Clear descriptions and scope | Met | Abstract, Specification (§1–8), User Journey, MoSCoW are clear and scoped. |
 | Evidence and supporting documentation | Partial | Rationale and architecture are described; no explicit references to research, standards, or prior audits. |
 | Remediation recommendations with priority | Gap | Spec does not define remediation tracking; MoSCoW gives priority for features, not for risks/findings. |
-| Compliance mapping | Gap | Regulatory and KYC are mentioned but not mapped to jurisdictions or frameworks (e.g., GDPR, MiCA). |
+| Compliance mapping | Gap | Data protection is mentioned but not mapped to jurisdictions or frameworks (e.g., GDPR, CCPA). |
 | Methodology and scope limitations | Partial | Implementation approach and MVP scope are stated; limitations (e.g., “AI verification is best-effort”) could be explicit. |
 | Audit trail and change tracking | Gap | No version history or change log in the spec; frontmatter has `created` but no `updated` or revision log. |
 
 **Findings**
 
-- **DOC-1 (Low)**: No compliance mapping. **Recommendation**: Add a short “Compliance” subsection or table mapping to relevant regulations (e.g., data protection, financial services) and note app-layer vs protocol-layer responsibilities.
+- **DOC-1 (Low)**: No compliance mapping. **Recommendation**: Add a short “Compliance” subsection or table mapping to relevant regulations (e.g., data protection) and note app-layer responsibilities. No financial regulation (no funds/tokens).
 - **DOC-2 (Low)**: No audit trail for spec changes. **Recommendation**: Add `updated: YYYY-MM-DD` in frontmatter and/or a “Changelog” subsection for material spec changes.
 - **DOC-3 (Info)**: Limitations of AI verification (false positives/negatives) are described in Photo Verification section but could be summarized in Security or Compliance. **Recommendation**: One sentence in Security Considerations referencing the dispute layer and economic penalties as mitigations.
 
@@ -55,17 +58,19 @@ The LockIn Protocol specification (spec.md) was audited against the practices an
 
 ## 4. Compliance & Regulatory (per audit.md Compliance Section)
 
+*No financial regulation (no funds, tokens, or KYC in product scope).*
+
 | Criterion | Status | Notes |
 |-----------|--------|------|
-| Regulatory requirements coverage | Partial | Regulatory and KYC mentioned in Security; staking/transfer of value noted as potentially regulated. |
-| Compliance validation procedures | Gap | No procedures for validating compliance (e.g., how to confirm KYC or data handling). |
+| Regulatory requirements coverage | Partial | Data protection mentioned; no financial regulation (product has no funds/tokens). |
+| Compliance validation procedures | Gap | No procedures for validating data handling compliance. |
 | Compliance documentation and tracking | Gap | No list of applicable regulations or compliance ownership. |
-| Data privacy and protection | Partial | Privacy addressed (on-chain exposure, hashes only); no explicit GDPR/CCPA-style terms (lawful basis, retention, rights). |
+| Data privacy and protection | Partial | Privacy addressed; no explicit GDPR/CCPA-style terms (lawful basis, retention, rights). |
 
 **Findings**
 
-- **COMP-1 (Medium)**: Applicable regulations not listed. **Recommendation**: Add a “Regulatory context” bullet or table: e.g., data protection (GDPR/CCPA if applicable), financial regulations (MiCA, local securities), sanctions; and state that legal review is recommended before mainnet.
-- **COMP-2 (Low)**: Data retention and user rights (access, deletion) for off-chain data (Supabase, photos) not specified. **Recommendation**: Short note in §4 or §7 on retention policy and user data rights for off-chain data.
+- **COMP-1 (Medium)**: Applicable regulations not listed. **Recommendation**: Add a “Regulatory context” bullet or table: e.g., data protection (GDPR/CCPA if applicable); state that legal review is recommended for target jurisdictions.
+- **COMP-2 (Low)**: Data retention and user rights (access, deletion) for app data (profiles, photos) not specified. **Recommendation**: Short note in spec on retention policy and user data rights.
 
 ---
 
@@ -73,8 +78,8 @@ The LockIn Protocol specification (spec.md) was audited against the practices an
 
 | Criterion | Status | Notes |
 |-----------|--------|------|
-| Data privacy and protection | Partial | On-chain minimal exposure and hashes stated; off-chain storage (Supabase, IPFS) mentioned. |
-| Data quality and integrity | Partial | Attestation and hash flow described; no explicit integrity checks (e.g., checksums, tamper detection) for off-chain assets. |
+| Data privacy and protection | Partial | App storage and optional hashes stated; no on-chain; DB and file storage mentioned. |
+| Data quality and integrity | Partial | Proof storage described; no explicit integrity checks (e.g., checksums, tamper detection) for stored assets. |
 | Data governance | Gap | No data ownership, retention, or deletion policy stated. |
 | Data incident response | Gap | No procedure for data breach or leak (e.g., photo exposure). |
 
@@ -96,7 +101,7 @@ The LockIn Protocol specification (spec.md) was audited against the practices an
 
 **Findings**
 
-- **RISK-1 (Low)**: No consolidated risk view. **Recommendation**: Add a “Risks and mitigations” subsection (or table) under Security Considerations or Rationale: e.g., smart contract bug → audit + testnet; oracle key compromise → key management + post-MVP decentralization; AI misuse → dispute layer + reputation; regulatory → legal review + app-layer compliance.
+- **RISK-1 (Low)**: No consolidated risk view. **Recommendation**: Add a “Risks and mitigations” subsection (or table) under Security: e.g., auth/data exposure → access control + retention; verification abuse → dispute or partner review; regulatory → legal review + data protection.
 
 ---
 
@@ -115,7 +120,7 @@ Interpreted for a specification artifact:
 
 **Finding**
 
-- **CHECK-1 (Low)**: Test strategy not in spec. **Recommendation**: In Implementation approach or §6, add one line on test strategy (e.g., unit + integration for contracts, E2E for flows, testnet validation) and that security audit is required before mainnet.
+- **CHECK-1 (Low)**: Test strategy not in spec. **Recommendation**: In Implementation approach or §6, add one line on test strategy (e.g., unit + integration for backend, E2E for flows). No smart contract or mainnet audit (app-only).
 
 ---
 
@@ -134,30 +139,30 @@ Interpreted for a specification artifact:
 
 ## 9. Summary of Recommendations (Priority)
 
-**High / before mainnet**
+**High**
 
-- Add threat model (or reference) and map to existing mitigations (SEC-1).
-- Add regulatory context and recommend legal review (COMP-1).
-- Ensure smart contract and critical path have a defined security audit and test strategy (CHECK-1, SEC).
+- Add threat model (or reference) for app and data, and map to existing mitigations (SEC-1).
+- Add regulatory context (data protection) and recommend legal review for target jurisdictions (COMP-1).
+- Define test strategy for app and E2E flows (CHECK-1). No smart contract or mainnet (app-only).
 
 **Medium**
 
-- Add incident response and escalation (SEC-2).
-- Clarify backend oracle key management and rotation (SEC-3).
-- Add short data governance/retention and user rights note for off-chain data (DATA-1, COMP-2).
+- Add incident response and escalation for app/data (SEC-2).
+- If backend verification is used, clarify credential/key management (SEC-3).
+- Add short data governance/retention and user rights note for app data (DATA-1, COMP-2).
 
 **Low / optional**
 
 - Add spec changelog or `updated` in frontmatter (DOC-2).
 - Add risks-and-mitigations table or subsection (RISK-1).
-- Clarify audit retention/access for stored photos (DATA-2).
-- Summarize AI verification limitations in Security (DOC-3).
+- Clarify retention/access for stored photos (DATA-2).
+- Summarize verification limitations in Security (DOC-3).
 
 ---
 
 ## 10. Conclusion
 
-The LockIn Protocol spec is suitable as a design and product baseline and aligns well with the audit document’s emphasis on documentation, security awareness, and compliance. To align fully with the audit practices in external/audit-standards.md, the spec should be extended with explicit threat modeling, regulatory mapping, incident response, data governance, and (where applicable) references to remediation and audit follow-up. Implementing the high- and medium-priority recommendations above will bring the spec in line with the audit standards and support downstream implementation and security audits.
+The LockIn Protocol spec is suitable as a design and product baseline for an open-source, application-only product with no cryptocurrency or monetization. To align fully with the audit practices in external/audit-standards.md, the spec should be extended with explicit threat modeling (app/data), data protection mapping, incident response, and data governance. Implementing the recommendations above will support downstream implementation and app security; no smart contract or mainnet audit applies.
 
 ---
 

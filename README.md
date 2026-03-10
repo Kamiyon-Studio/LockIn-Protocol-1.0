@@ -1,6 +1,6 @@
 # LockIn Protocol
 
-A habit-tracking and accountability app that enforces commitments, supports peer challenges, and optionally stakes AVAX in smart contracts for verifiable, reward-driven focus.
+An open-source habit-tracking and accountability app that enforces commitments with optional peer verification and photo check-ins. No cryptocurrency or monetization.
 
 **Status:** Draft · **Type:** Application
 
@@ -8,9 +8,9 @@ A habit-tracking and accountability app that enforces commitments, supports peer
 
 ## What It Does
 
-LockIn Protocol turns habit-building from intention into **structured, verifiable action**. You set daily commitments with optional photo check-ins; you can stake AVAX in escrow on Avalanche. Stakes stay locked until the commitment is resolved: **success** returns your stake (and optional rewards), **failure** automatically sends stakes to your accountability partners or the Lock In Reserve. All outcomes are recorded on-chain.
+LockIn Protocol turns habit-building from intention into **structured, verifiable action**. You set commitments with optional photo check-ins and can invite accountability partners to verify completion. **Success** and **failure** are recorded in the app; there are **no stakes, no wallet, and no payments**. The project is open source and community-maintained.
 
-**Target users:** Students and young professionals who want enforceable accountability beyond reminders and bypassable blockers.
+**Target users:** Anyone who wants structured accountability beyond reminders—students, professionals, and teams—without any financial barrier.
 
 ---
 
@@ -18,11 +18,10 @@ LockIn Protocol turns habit-building from intention into **structured, verifiabl
 
 | Concept | Description |
 |--------|-------------|
-| **Commitment** | A goal (e.g. "no social media", "study 4 hours") with a time window, optional photo check-ins, and optional stake in AVAX. |
-| **Stake** | AVAX locked in a smart contract; released on success (back to you) or failure (to partners / reserve). |
-| **Check-in** | Evidence of compliance (e.g. daily photo); verified off-chain, hash + attestation stored on-chain. |
-| **Accountability partners** | Peers you designate; they receive a share of your stake if you fail. Invite via magic link or wallet. |
-| **Challenge** | Peer-to-peer: two or more users commit to related goals; stakes and payouts can be linked. |
+| **Commitment** | A goal (e.g. "no social media", "study 4 hours") with a time window and optional photo check-ins. No money at risk. |
+| **Check-in** | Evidence of compliance (e.g. daily photo); stored in the app; optionally verified by backend or partner. |
+| **Accountability partners** | Peers you invite to approve or reject your check-in; they do not receive any payment. |
+| **Resolution** | Outcome (success/fail/expired) recorded in the app; no funds moved. |
 
 ---
 
@@ -30,49 +29,40 @@ LockIn Protocol turns habit-building from intention into **structured, verifiabl
 
 | Layer | Stack |
 |-------|--------|
-| **Chain** | Avalanche C-Chain (EVM) |
-| **Contracts** | Solidity 0.8.25+, Foundry — EscrowLock, CommitmentResolver |
-| **Frontend** | Next.js 15, wagmi/viem, Tailwind CSS · Vercel |
-| **Backend** | Node.js/Express · Moralis, Supabase, Firebase · goal-aware photo verification |
+| **Frontend** | Next.js 15, Tailwind CSS · Vercel or similar |
+| **Backend** | Optional Node.js/Express · Supabase or similar · optional photo verification |
 
-**Design choices:** Non-custodial escrow (contract-only control), hybrid verification (backend AI + signed attestation on-chain), optional staking, single chain (AVAX only for MVP).
+**Design:** No wallet, no blockchain, no crypto. Application-only; optional peer review.
 
 ---
 
 ## Implementation Approach
 
-1. **Contracts** — Foundry; unit/integration tests; deploy to Fuji testnet.
-2. **Frontend** — Wallet connect, commitment UI, dashboard, history via indexer.
-3. **Backend** — Photo verification, notifications, indexing.
-4. **E2E on Fuji** → **Security audit** → **Mainnet deploy.**
+1. **Frontend** — Sign-up, commitment UI, check-in upload, dashboard, history.
+2. **Backend (optional)** — Persistence, verification, notifications.
+3. **Testing and docs** — E2E tests, README, and user-facing help.
 
-A professional security audit of EscrowLock and CommitmentResolver is required before mainnet.
+No chain deployment or smart contract audit.
 
 ---
 
 ## Scope (MVP)
 
-**In scope:** Commitment creation and management, photo check-ins, AVAX staking, accountability partners, on-chain resolution, web frontend, backend verification and notifications.
+**In scope:** Commitment creation and management, photo check-ins, optional accountability partners, resolution and history, web frontend, optional backend.
 
-**Out of scope:** Multi-chain/L2, ERC-20 staking, mandatory KYC at protocol layer, custodial controls, native mobile app (web-only for MVP).
+**Out of scope:** Any blockchain, wallet, token, staking, or payment. No mandatory KYC. Web-only for MVP unless otherwise scoped.
 
 ---
 
 ## Docs & Links
 
 - **Full specification:** [spec.md](./spec.md)
-- **Supporting documentation:** [external/README.md](./external/README.md) — PRD, business model, customer success & support strategy, DevOps strategy, service contract template, audit standards.
+- **Canonical product doc:** [DOCUMENTATION.MD](./DOCUMENTATION.MD)
+- **MVP reference:** [docs/LockIn-Protocol-MVP.md](./docs/LockIn-Protocol-MVP.md)
+- **Supporting documentation:** [external/README.md](./external/README.md) — PRD, customer success & support strategy, DevOps strategy, audit standards.
 - **Spec audit report:** [spec_audit_report.md](./spec_audit_report.md) — audit of spec.md against [external/audit-standards.md](./external/audit-standards.md).
-- **Repository:** [github.com/LockIn-Protocol](https://github.com/LockIn-Protocol)
+- **Repository:** [github.com/Kamiyon-Studio/LockIn-Protocol-1.0](https://github.com/Kamiyon-Studio/LockIn-Protocol-1.0)
 
-### Avalanche documentation (llms.txt)
-
-Static endpoints for AI content discovery and retrieval ([llms.txt](https://build.avax.network/llms.txt) standard):
-
-- **Index:** [https://build.avax.network/llms.txt](https://build.avax.network/llms.txt) — structured sections (Documentation, Academy, Integrations, Blog) with links and descriptions.
-- **Full content:** [https://build.avax.network/llms-full.txt](https://build.avax.network/llms-full.txt) — all documentation in one markdown file (1300+ pages); for limited-context use, prefer the index or individual page endpoint.
-- **Individual pages:** Append `.md` to any page URL for processed markdown (e.g. `.../docs/primary-network/overview.md`, `.../academy/blockchain-fundamentals/blockchain-intro.md`, `.../integrations/chainlink.md`, `.../blog/your-first-l1.md`). Works under `/docs/`, `/academy/`, `/integrations/`, and `/blog/`.
-s
 ---
 
 ## Authors
